@@ -1,77 +1,68 @@
-
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ZeroWaste - Professional Food Share Ecosystem</title>
     <style>
-        * { box-sizing: border-box; font-family: 'Inter', system-ui, sans-serif; margin: 0; padding: 0; }
+        * { box-sizing: border-box; font-family: 'Segoe UI', system-ui, sans-serif; margin: 0; padding: 0; }
         body { background-color: #f8fafc; color: #1e293b; padding-bottom: 50px; }
         
-        /* Premium Top Header Navbar */
-        nav { background: #1e3a1e; background: linear-gradient(135deg, #1b5e20 0%, #2e7d32 100%); color: white; padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
-        nav .logo { font-size: 1.6rem; font-weight: 800; letter-spacing: -0.5px; display: flex; align-items: center; gap: 8px; }
+        /* Premium Top Navbar */
+        nav { background: linear-gradient(135deg, #1b5e20 0%, #2e7d32 100%); color: white; padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        nav .logo { font-size: 1.6rem; font-weight: 800; display: flex; align-items: center; gap: 8px; }
         nav .nav-links { display: flex; gap: 15px; }
-        nav .nav-links button { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: white; padding: 10px 18px; border-radius: 6px; font-size: 0.95rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease; }
+        nav .nav-links button { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: white; padding: 10px 18px; border-radius: 6px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease; }
         nav .nav-links button.active, nav .nav-links button:hover { background: white; color: #1b5e20; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
 
         .main-wrapper { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
-        .app-page { display: none; animation: fadeIn 0.4s ease forwards; }
+        .app-page { display: none; }
         .app-page.active { display: block; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* Professional Impact Dashboard Grid */
+        /* Dashboard Grid */
         .dashboard-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin-bottom: 40px; }
-        .metric-card { background: white; padding: 30px; border-radius: 12px; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.02), 0 1px 3px rgba(0,0,0,0.05); border-bottom: 4px solid #2e7d32; transition: transform 0.2s; }
-        .metric-card:hover { transform: translateY(-5px); }
-        .metric-card h3 { color: #64748b; font-size: 1.05rem; font-weight: 600; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .metric-card { background: white; padding: 30px; border-radius: 12px; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.05); border-bottom: 4px solid #2e7d32; }
+        .metric-card h3 { color: #64748b; font-size: 1.05rem; margin-bottom: 12px; text-transform: uppercase; }
         .metric-card p { font-size: 2.4rem; font-weight: 800; color: #1b5e20; }
 
-        /* Premium Forms and Dynamic Panels Layout */
-        .content-panel { background: white; padding: 35px; border-radius: 12px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.04); border: 1px solid #e2e8f0; max-width: 700px; margin: 0 auto; }
-        .content-panel h2 { color: #1b5e20; font-size: 1.6rem; font-weight: 700; margin-bottom: 25px; border-bottom: 2px solid #f1f5f9; padding-bottom: 12px; }
+        /* Forms Layout Fixes */
+        .content-panel { background: white; padding: 35px; border-radius: 12px; box-shadow: 0 10px 15px rgba(0,0,0,0.05); border: 1px solid #e2e8f0; max-width: 700px; margin: 0 auto; }
+        .content-panel h2 { color: #1b5e20; font-size: 1.6rem; margin-bottom: 25px; border-bottom: 2px solid #f1f5f9; padding-bottom: 12px; }
         
-        /* Font Resolution Input Box Styling Fixes */
-        .input-group { margin-bottom: 20px; }
-        .input-group label { display: block; margin-bottom: 8px; font-weight: 600; font-size: 1rem; color: #334155; }
-        .input-group input, .input-group select { width: 100%; padding: 14px 16px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 1.1rem; color: #1e293b; background-color: #f8fafc; transition: all 0.2s; }
-        .input-group input:focus, .input-group select:focus { outline: none; border-color: #2e7d32; background-color: #fff; box-shadow: 0 0 0 4px rgba(46, 125, 50, 0.15); }
+        /* Font Size Fix - Big & Readable */
+        .input-group { margin-bottom: 20px; text-align: left; }
+        .input-group label { display: block; margin-bottom: 8px; font-weight: 600; font-size: 1.1rem; color: #334155; }
+        .input-group input, .input-group select { width: 100%; padding: 14px 16px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 1.2rem; color: #1e293b; background-color: #f8fafc; }
 
-        .action-btn { display: inline-block; width: 100%; background: #2e7d32; color: white; padding: 15px; border: none; border-radius: 8px; font-size: 1.1rem; font-weight: 700; cursor: pointer; text-align: center; box-shadow: 0 4px 6px rgba(46,125,50,0.2); transition: all 0.2s; }
-        .action-btn:hover { background: #1b5e20; transform: translateY(-1px); }
+        .action-btn { display: inline-block; width: 100%; background: #2e7d32; color: white; padding: 15px; border: none; border-radius: 8px; font-size: 1.2rem; font-weight: 700; cursor: pointer; box-shadow: 0 4px 6px rgba(46,125,50,0.2); }
+        .action-btn:hover { background: #1b5e20; }
 
-        /* Interactive Dynamic Cards UI */
+        /* Listings Cards */
         .listings-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 25px; }
-        .food-card { background: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 25px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02); display: flex; flex-direction: column; justify-content: space-between; position: relative; border-left: 6px solid #2e7d32; }
-        .food-card h3 { color: #1e293b; font-size: 1.3rem; margin-bottom: 10px; font-weight: 700; }
-        .food-card p { font-size: 1rem; color: #64748b; margin-bottom: 8px; }
-        .food-card strong { color: #0f172a; }
-        .status-pill { position: absolute; top: 20px; right: 20px; padding: 6px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; }
-        .status-pill.fresh { background-color: #dcfce7; color: #15803d; }
-        .status-pill.expiring { background-color: #ffedd5; color: #c2410c; }
-        .claim-btn { background: #2563eb; color: white; border: none; padding: 10px 15px; border-radius: 6px; font-weight: 600; cursor: pointer; margin-top: 15px; width: 100%; transition: background 0.2s; }
+        .food-card { background: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 25px; position: relative; border-left: 6px solid #2e7d32; text-align: left; }
+        .food-card h3 { color: #1e293b; font-size: 1.3rem; margin-bottom: 10px; }
+        .food-card p { font-size: 1.1rem; color: #64748b; margin-bottom: 8px; }
+        .claim-btn { background: #2563eb; color: white; border: none; padding: 12px 15px; border-radius: 6px; font-size: 1rem; font-weight: 600; cursor: pointer; margin-top: 15px; width: 100%; }
         .claim-btn:hover { background: #1d4ed8; }
         .claim-btn.claimed { background: #64748b; cursor: not-allowed; }
 
-        /* Clean Table view for Analytics */
-        .analytics-box { background: white; border-radius: 12px; padding: 30px; box-shadow: 0 4px 6px rgba(0,0,0,0.02); }
-        .analytics-table { width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 1.05rem; }
+        /* Data Table */
+        .analytics-box { background: white; border-radius: 12px; padding: 30px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        .analytics-table { width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 1.1rem; }
         .analytics-table th, .analytics-table td { padding: 14px; text-align: left; border-bottom: 1px solid #e2e8f0; }
-        .analytics-table th { background-color: #f1f5f9; color: #475569; font-weight: 700; }
-        .no-data { text-align: center; color: #94a3b8; padding: 30px; font-style: italic; }
+        .analytics-table th { background-color: #f1f5f9; color: #475569; }
     </style>
 </head>
 <body>
 
-    <!-- Professional Architecture Navigation Bar -->
+    <!-- Top Navigation Bar -->
     <nav>
         <div class="logo">🌿 ZeroWaste Hub</div>
         <div class="nav-links">
-            <button class="active" onclick="switchPage('home')">Home Dashboard</button>
-            <button onclick="switchPage('donor')">Donor Portal</button>
-            <button onclick="switchPage('ngo')">NGO Listings</button>
-            <button onclick="switchPage('analytics')">Live Tracker</button>
+            <button id="btn-home" class="active" onclick="switchPage('home', this)">Home Dashboard</button>
+            <button id="btn-donor" onclick="switchPage('donor', this)">Donor Portal</button>
+            <button id="btn-ngo" onclick="switchPage('ngo', this)">NGO Listings</button>
+            <button id="btn-analytics" onclick="switchPage('analytics', this)">Live Tracker</button>
         </div>
     </nav>
 
@@ -95,7 +86,7 @@
             </div>
             <div style="text-align: center; background: white; padding: 40px; border-radius: 12px; border: 1px solid #e2e8f0;">
                 <h2 style="color:#1b5e20; margin-bottom: 15px;">Welcome to the Professional Sustainability Platform</h2>
-                <p style="color:#64748b; max-width:600px; margin: 0 auto; font-size: 1.1rem; line-height: 1.6;">
+                <p style="color:#64748b; max-width:600px; margin: 0 auto; font-size: 1.2rem; line-height: 1.6;">
                     This app bridges the gap between massive food production surpluses and local welfare distribution networks. Navigate using the top portal system to list donations or view active operations.
                 </p>
             </div>
@@ -107,7 +98,7 @@
                 <h2>1. Food Surplus Registration Form</h2>
                 <div class="input-group">
                     <label>Surplus Food Item Description</label>
-                    <input type="text" id="foodName" placeholder="e.g., Paneer Butter Masala & Roti">
+                    <input type="text" id="foodName" placeholder="e.g., Rice, Biryani, Veg Curry">
                 </div>
                 <div class="input-group">
                     <label>Quantity / Serving Capacity (Persons)</label>
@@ -124,7 +115,7 @@
                 <div class="input-group">
                     <label>Time Spent Since Cooking</label>
                     <select id="cookedTime">
-                        <option value="Freshly Prepared (Under 2 hrs ago)">Under 2 hours ago</option>
+                        <option value="Freshly Prepared">Under 2 hours ago</option>
                         <option value="Prepared 4-6 hours ago">4 - 6 hours ago</option>
                     </select>
                 </div>
@@ -134,15 +125,43 @@
 
         <!-- PAGE 3: NGO LISTINGS VIEW -->
         <div id="page-ngo" class="app-page">
-            <h2 style="color: #1b5e20; margin-bottom: 25px; font-size: 1.8rem;">2. Active Surplus Listings Available for Pickup</h2>
+            <h2 style="color: #1b5e20; margin-bottom: 25px; font-size: 1.8rem; text-align: left;">2. Active Surplus Listings Available for Pickup</h2>
             <div class="listings-container" id="listingsContainer">
-                <!-- Static Pro Items -->
                 <div class="food-card" id="static-card-1">
-                    <span class="status-pill fresh">Fresh Stack</span>
                     <div>
                         <h3>Grand Heritage Marriage Hall</h3>
                         <p>Items: <strong>Mixed Vegetable Rice Combo</strong></p>
-                        <p>Volume Weight Capacity: <strong>60 Servings</strong></p>
-                        <p>Status Log: <strong>Freshly Prepared</strong></p>
+                        <p>Volume Capacity: <strong>60 Servings</strong></p>
+                        <p>Status: <strong>Freshly Prepared</strong></p>
                     </div>
                     <button class="claim-btn" onclick="claimFood('static-card-1', 60)">Accept Allocation & Pickup</button>
+                </div>
+
+                <div class="food-card" id="static-card-2">
+                    <div>
+                        <h3>Star Deluxe Cloud Kitchen</h3>
+                        <p>Items: <strong>Hyderabadi Chicken Biryani</strong></p>
+                        <p>Volume Capacity: <strong>25 Servings</strong></p>
+                        <p>Status: <strong>Prepared 4 hrs ago</strong></p>
+                    </div>
+                    <button class="claim-btn" style="background:#ea580c;" onclick="claimFood('static-card-2', 25)">Urgent Safe Claim</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- PAGE 4: LIVE TRACKER LOGS -->
+        <div id="page-analytics" class="app-page">
+            <div class="analytics-box">
+                <h2 style="text-align: left; color: #1b5e20;">3. Real-Time Deployment Operational Logs</h2>
+                <table class="analytics-table">
+                    <thead>
+                        <tr>
+                            <th>Origin Source Location</th>
+                            <th>Item Category</th>
+                            <th>Serving Count</th>
+                            <th>Operational Metrics Log</th>
+                        </tr>
+                    </thead>
+                    <tbody id="analyticsLogs">
+                        <tr>
+                            <td>Grand Heritage Marriage Hall</td>
