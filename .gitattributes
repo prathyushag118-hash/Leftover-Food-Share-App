@@ -1,2 +1,119 @@
-# Auto detect text files and perform LF normalization
-* text=auto
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZeroWaste Hub - Professional Sustainability App</title>
+    <style>
+        * { box-sizing: border-box; font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; margin: 0; padding: 0; }
+        body { background-color: #f1f5f9; color: #0f172a; padding-bottom: 60px; }
+        
+        /* Premium Core Ecosystem Bar Layout */
+        nav { background: #1b5e20; padding: 18px 40px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 999; box-shadow: 0 4px 20px rgba(0,0,0,0.15); border-bottom: 3px solid #ffb300; }
+        nav .brand-logo { font-size: 1.8rem; font-weight: 800; color: white; display: flex; align-items: center; gap: 10px; text-shadow: 1px 1px 2px rgba(0,0,0,0.2); }
+        nav .tab-navigation-links { display: flex; gap: 12px; }
+        
+        /* Direct Layout High Contrast Native Target Elements Buttons */
+        nav .tab-navigation-links button { background: rgba(255,255,255,0.15); border: 2px solid rgba(255,255,255,0.25); color: white; padding: 12px 22px; border-radius: 8px; font-size: 1.1rem; font-weight: 700; cursor: pointer; transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); }
+        nav .tab-navigation-links button:hover { background: rgba(255,255,255,0.3); border-color: white; }
+        nav .tab-navigation-links button.active-view-tab { background: #ffffff !important; color: #1b5e20 !important; border-color: #ffffff !important; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
+
+        .app-view-container { max-width: 1200px; margin: 40px auto; padding: 0 25px; }
+        
+        /* Inline Frame Architecture Target Sections */
+        .content-panel-page { display: none !important; }
+        .content-panel-page.active-visible-view { display: block !important; animation: viewSlideIn 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        @keyframes viewSlideIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Advanced Data Analytics Counter Grid Layout */
+        .analytics-metrics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-bottom: 45px; }
+        .dashboard-metric-card { background: white; padding: 35px 25px; border-radius: 16px; text-align: center; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05), 0 8px 10px -6px rgba(0,0,0,0.05); border-top: 5px solid #1b5e20; transition: transform 0.3s; }
+        .dashboard-metric-card:hover { transform: translateY(-5px); }
+        .dashboard-metric-card h3 { color: #64748b; font-size: 1.1rem; font-weight: 700; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 0.75px; }
+        .dashboard-metric-card p { font-size: 2.8rem; font-weight: 900; color: #1b5e20; font-variant-numeric: tabular-nums; }
+
+        /* Premium Form Control Field Design Alignment Fixes */
+        .input-form-wrapper-box { background: white; padding: 40px; border-radius: 16px; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.05); border: 1px solid #e2e8f0; max-width: 750px; margin: 0 auto; }
+        .input-form-wrapper-box h2 { color: #1b5e20; font-size: 1.8rem; font-weight: 800; margin-bottom: 30px; border-bottom: 3px solid #f1f5f9; padding-bottom: 15px; text-align: left; }
+        
+        /* Text Size Font Resolution Enhancement Layer */
+        .form-control-row-group { margin-bottom: 25px; text-align: left; }
+        .form-control-row-group label { display: block; margin-bottom: 10px; font-weight: 700; font-size: 1.2rem; color: #1e293b; }
+        .form-control-row-group input, .form-control-row-group select { width: 100%; padding: 16px 20px; border: 2px solid #cbd5e1; border-radius: 10px; font-size: 1.3rem; font-weight: 500; color: #0f172a; background-color: #f8fafc; transition: all 0.2s ease; }
+        .form-control-row-group input:focus, .form-control-row-group select:focus { outline: none; border-color: #1b5e20; background-color: #ffffff; box-shadow: 0 0 0 5px rgba(27, 94, 32, 0.2); }
+
+        .premium-trigger-action-btn { display: inline-block; width: 100%; background: linear-gradient(135deg, #1b5e20 0%, #2e7d32 100%); color: white; padding: 18px; border: none; border-radius: 10px; font-size: 1.3rem; font-weight: 800; cursor: pointer; text-align: center; box-shadow: 0 6px 20px rgba(27,94,32,0.3); transition: all 0.2s ease; }
+        .premium-trigger-action-btn:hover { background: #1b5e20; transform: translateY(-2px); box-shadow: 0 8px 25px rgba(27,94,32,0.4); }
+
+        /* Dynamic Grid Component Data Cards Elements */
+        .listings-flex-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 30px; }
+        .data-display-food-card { background: white; border: 1px solid #e2e8f0; border-radius: 16px; padding: 30px; position: relative; border-left: 8px solid #1b5e20; text-align: left; box-shadow: 0 4px 6px rgba(0,0,0,0.02); display: flex; flex-direction: column; justify-content: space-between; }
+        .data-display-food-card h3 { color: #0f172a; font-size: 1.4rem; margin-bottom: 12px; font-weight: 800; }
+        .data-display-food-card p { font-size: 1.15rem; color: #475569; margin-bottom: 10px; line-height: 1.5; }
+        .data-display-food-card strong { color: #0f172a; font-weight: 700; }
+        
+        .operational-claim-dispatch-btn { background: #2563eb; color: white; border: none; padding: 14px 20px; border-radius: 8px; font-size: 1.1rem; font-weight: 700; cursor: pointer; margin-top: 20px; width: 100%; transition: background 0.2s; box-shadow: 0 4px 12px rgba(37,99,235,0.2); }
+        .operational-claim-dispatch-btn:hover { background: #1d4ed8; }
+        .operational-claim-dispatch-btn.state-locked-claimed { background: #64748b !important; color: #cbd5e1 !important; cursor: not-allowed !important; box-shadow: none !important; }
+
+        /* Real-time Operation Logs Table Framework */
+        .table-data-container-panel { background: white; border-radius: 16px; padding: 35px; box-shadow: 0 10px 25px rgba(0,0,0,0.02); border: 1px solid #e2e8f0; }
+        .table-data-container-panel h2 { text-align: left; color: #1b5e20; font-size: 1.8rem; font-weight: 800; margin-bottom: 25px; }
+        .ecosystem-data-table { width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 1.15rem; }
+        .ecosystem-data-table th, .ecosystem-data-table td { padding: 16px 20px; text-align: left; border-bottom: 1px solid #e2e8f0; }
+        .ecosystem-data-table th { background-color: #f8fafc; color: #475569; font-weight: 700; border-bottom: 2px solid #e2e8f0; }
+        .ecosystem-data-table td { color: #334155; font-weight: 500; }
+    </style>
+</head>
+<body>
+
+    <!-- Native Event Router Top Header Navigation Bar Framework -->
+    <nav>
+        <div class="brand-logo">🌿 ZeroWaste Hub</div>
+        <div class="tab-navigation-links">
+            <button id="tab-nav-btn-home" class="active-view-tab" onclick="directViewNavigationRouter('home')">Home Dashboard</button>
+            <button id="tab-nav-btn-donor" onclick="directViewNavigationRouter('donor')">Donor Portal</button>
+            <button id="tab-nav-btn-ngo" onclick="directViewNavigationRouter('ngo')">NGO Listings</button>
+            <button id="tab-nav-btn-analytics" onclick="directViewNavigationRouter('analytics')">Live Tracker</button>
+        </div>
+    </nav>
+
+    <div class="app-view-container">
+
+        <!-- PAGE CONTAINER MODULE 1: CORE HOME INTEGRATION VIEW -->
+        <div id="view-panel-section-home" class="content-panel-page active-visible-view">
+            <div class="analytics-metrics-grid">
+                <div class="dashboard-metric-card">
+                    <h3>Total Food Saved Volume</h3>
+                    <p id="live-metric-display-food">1,240 Kg</p>
+                </div>
+                <div class="dashboard-metric-card">
+                    <h3>Active Beneficiary Meals</h3>
+                    <p id="live-metric-display-meals">3,102</p>
+                </div>
+                <div class="dashboard-metric-card">
+                    <h3>CO2 Greenhouse Gas Reduced</h3>
+                    <p id="live-metric-display-co2">483 Kg</p>
+                </div>
+            </div>
+            <div style="text-align: center; background: white; padding: 50px 40px; border-radius: 16px; border: 1px solid #e2e8f0; box-shadow: 0 4px 6px rgba(0,0,0,0.01);">
+                <h2 style="color:#1b5e20; margin-bottom: 20px; font-size: 2rem; font-weight: 800;">Welcome to the ZeroWaste Sustainability Ecosystem</h2>
+                <p style="color:#475569; max-width:750px; margin: 0 auto; font-size: 1.25rem; line-height: 1.7; font-weight: 500;">
+                    This application architecture functions as a real-time decentralized operational ledger bridging commercial venue surplus stocks directly into localized humanitarian distribution pathways. Toggle the high-contrast access tabs above to control components.
+                </p>
+            </div>
+        </div>
+
+        <!-- PAGE CONTAINER MODULE 2: HIGH RESOLUTION DONOR ENTRY PORTAL VIEW -->
+        <div id="view-panel-section-donor" class="content-panel-page">
+            <div class="input-form-wrapper-box">
+                <h2>1. Commercial Surplus Stock Deployment Register</h2>
+                <div class="form-control-row-group">
+                    <label>Surplus Resource Nomenclature / Description</label>
+                    <input type="text" id="inputElementFoodDescription" placeholder="e.g., Authentic Veg Meals Combo, Paneer Curry & Rice">
+                </div>
+                <div class="form-control-row-group">
+                    <label>Serving Volume Batch Capacity (Count Units)</label>
+                    <input type="number" id="inputElementServingVolumeCapacity" placeholder="e.g., 65">
+                </div>
+                <div class="form-control-row-group">
